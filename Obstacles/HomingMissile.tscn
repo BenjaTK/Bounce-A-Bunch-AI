@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Sprites/flying_character1.png" type="Texture" id=1]
+[ext_resource path="res://Obstacles/HomingMissile.gd" type="Script" id=2]
+[ext_resource path="res://Areas/Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Sprites/flying_character3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/flying_character2.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.75, 5 )
+
+[node name="HomingMissile" type="KinematicBody2D"]
+z_index = 2
+collision_layer = 16
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+playing = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Hitbox" parent="." instance=ExtResource( 3 )]
+
+[node name="Area" parent="Hitbox" index="0"]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -9.53674e-07, -9.53674e-07 )
+scale = Vector2( 1.2, 1.2 )
+z_index = -1
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+
+[editable path="Hitbox"]
