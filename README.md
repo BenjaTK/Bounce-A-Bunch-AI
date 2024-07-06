@@ -15,7 +15,8 @@ Recursos utilizados:
 - https://github.com/xen-42/Godot-snake-AI
 
 Un video de la IA jugando en el episodio 2835 apróx.
-<video controls src="Neural Network.mp4" title="Title"></video>
+
+https://github.com/BenjaTK/Bounce-A-Bunch-AI/assets/73806216/a4074f67-e350-4b3e-b16f-9990e58656c8
 
 Puntaje promedio a través de los episodios:
 ![alt text](puntaje_promedio.png)
